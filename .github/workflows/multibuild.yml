@@ -14,10 +14,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "18.x"
-      - run: pnpm install
-      - run: pnpm build
+      - run: npm install
+      - run: npm build
       - run: cd build
-      - run: pnpm create electron-app@latest electronApp -y
+      - run: npm create electron-app@latest electronApp -y
       - run: cp -r electron/* electronApp/src
       - run: cd electron && pnpm make -y
       
