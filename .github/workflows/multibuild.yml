@@ -1,0 +1,24 @@
+name: multibuild
+on:
+  pull_request: 
+    branches:
+    - master
+  push:
+    branches:
+    - master
+jobs:
+  build-electron:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+      - run: pnpm install
+      - run: pnpm build
+      - run: cd build
+      - run: pnpm create electron-app@latest electronApp -y
+      - run: cp -r electron/* electronApp/src
+      - run: cd electron && pnpm make -y
+      
+        
