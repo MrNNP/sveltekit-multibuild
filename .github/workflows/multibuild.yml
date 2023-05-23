@@ -19,4 +19,4 @@ jobs:
       - run: npm create electron-app@latest electronApp -y
       - run: ls -lah
       - run: cp -r build/electron/* electronApp/src
-      - run: cd electronApp && pnpm make
+      - run: cd electronApp && npm run make
