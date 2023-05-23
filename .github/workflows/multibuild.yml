@@ -1,11 +1,11 @@
 name: multibuild
 on:
-  pull_request: 
+  pull_request:
     branches:
-    - master
+      - master
   push:
     branches:
-    - master
+      - master
 jobs:
   build-electron:
     runs-on: ubuntu-latest
@@ -13,12 +13,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v1
         with:
-          node-version: "18.x"
+          node-version: '18.x'
       - run: npm install
       - run: npm run build
       - run: cd build
       - run: npm create electron-app@latest electronApp -y
+      - run: ls -lah
       - run: cp -r electron/* electronApp/src
       - run: cd electronApp && pnpm make
-      
-        
