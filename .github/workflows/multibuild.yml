@@ -20,3 +20,8 @@ jobs:
       - run: ls -lah
       - run: cp -r build/electron/* electronApp/src
       - run: cd electronApp && npm run make
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-electron-native
+          path: electronApp/out/make/*
