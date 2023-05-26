@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-electron-native
-          path: electronApp/out/make/*
+          path: electronApp/out/make/*/*
