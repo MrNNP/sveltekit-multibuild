@@ -21,8 +21,13 @@ jobs:
       - run: cp -r build/electron/* electronApp/src
       - run: cd electronApp && npm run make
       - run: ls -rlah electronApp/out/make
-      - name: Archive production artifacts
+      - name: Archive production artifacts deb
         uses: actions/upload-artifact@v3
         with:
-          name: dist-electron-native
-          path: electronApp/out/make/*/*
+          name: electron-linux-x64-deb
+          path: electronApp/out/make/deb/*
+      - name: Archive production artifacts rpm
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-linux-x64-rpm
+          path: electronApp/out/make/rpm/*
