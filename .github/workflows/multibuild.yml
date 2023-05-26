@@ -7,11 +7,11 @@ on:
     branches:
       - master
 jobs:
-  build-electron:
+  build-electron-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
       - run: npm install
@@ -31,3 +31,22 @@ jobs:
         with:
           name: electron-linux-x64-rpm
           path: electronApp/out/make/rpm/*
+  build-electron-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+      - run: npm run build
+      - run: npm create electron-app@latest electronApp -y
+      - run: ls -lah
+      - run: cp -r build/electron/* electronApp/src
+      - run: cd electronApp && npm run make
+      - run: ls -rlah electronApp/out/make
+      - name: Archive production artifacts dmg
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-mac-x64-dmg
+          path: electronApp/out/make/*
