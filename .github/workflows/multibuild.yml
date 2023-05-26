@@ -20,6 +20,7 @@ jobs:
       - run: ls -lah
       - run: cp -r build/electron/* electronApp/src
       - run: cd electronApp && npm run make
+      - run: ls -rlah electronApp/out/make
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
