@@ -16,21 +16,19 @@ jobs:
           node-version: '18.x'
       - run: npm install
       - run: npm run build
-      - run: npm create electron-app@latest electronApp -y
-      - run: ls -lah
-      - run: cp -r build/electron/* electronApp/src
-      - run: cd electronApp && npm run make
-      - run: ls -rlah electronApp/out/make
+      - run: cd electron && npm run make
+      - run: ls -Rlah electronApp/out/make
+      - run: sudo apt-get install flatpak flatpak-builder elfutils
       - name: Archive production artifacts deb
         uses: actions/upload-artifact@v3
         with:
           name: electron-linux-x64-deb
-          path: electronApp/out/make/deb/*
+          path: electron/out/make/deb/*
       - name: Archive production artifacts rpm
         uses: actions/upload-artifact@v3
         with:
           name: electron-linux-x64-rpm
-          path: electronApp/out/make/rpm/*
+          path: electron/out/make/rpm/*
   build-electron-mac:
     runs-on: macos-latest
     steps:
@@ -40,16 +38,12 @@ jobs:
           node-version: '18.x'
       - run: npm install
       - run: npm run build
-      - run: npm create electron-app@latest electronApp -y
-      - run: ls -lah
-      - run: cp -r build/electron/* electronApp/src
-      - run: cd electronApp && npm run make
-      - run: ls -rlah electronApp/out/make
+      - run: cd electron && npm run make
       - name: Archive production artifacts zip
         uses: actions/upload-artifact@v3
         with:
           name: electron-mac-x64-zip
-          path: electronApp/out/make/*
+          path: electron/out/make/*
   build-electron-win:
     runs-on: windows-latest
     steps:
@@ -59,11 +53,9 @@ jobs:
           node-version: '18.x'
       - run: npm install
       - run: npm run build
-      - run: npm create electron-app@latest electronApp -y
-      - run: Copy-Item -Path "./build/electron" -Destination "./electronApp/src" -Recurse  
-      - run: cd electronApp && npm run make
+      - run: cd electron && npm run make
       - name: Archive production artifacts exe
         uses: actions/upload-artifact@v3
         with:
           name: electron-win-x64-exe
-          path: electronApp/out/make/*
+          path: electron/out/make/*
