@@ -20,6 +20,7 @@ jobs:
       - run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       - run: sudo flatpak install flathub org.freedesktop.Platform//21.08 org.freedesktop.Sdk//21.08 -y
       - run: sudo flatpak install flathub org.freedesktop.Platform/x86_64/19.08 org.freedesktop.Sdk/x86_64/19.08 org.electronjs.Electron2.BaseApp/x86_64/stable -y
+      - run: git config --global --add protocol.file.allow always
       - run: cd electron && npm install && npm run make
       - run: ls -Rlah electron
       - name: Archive production artifacts deb
