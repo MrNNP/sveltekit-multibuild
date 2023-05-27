@@ -14,8 +14,8 @@ const config = {
 		adapter: adapter({
 			// default options are shown. On some platforms
 			// these options are set automatically — see below
-			pages: 'electron/src',
-			assets: 'electron/src',
+			pages: 'electron/src/svelte',
+			assets: 'electron/src/svelte',
 			fallback: null,
 			precompress: true,
 			strict: true,
