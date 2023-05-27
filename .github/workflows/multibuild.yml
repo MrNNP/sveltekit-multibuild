@@ -50,3 +50,22 @@ jobs:
         with:
           name: electron-mac-x64-dmg
           path: electronApp/out/make/*
+  build-electron-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+      - run: npm run build
+      - run: npm create electron-app@latest electronApp -y
+      - run: ls -lah
+      - run: cp -r build/electron/* electronApp/src
+      - run: cd electronApp && npm run make
+      - run: ls -rlah electronApp/out/make
+      - name: Archive production artifacts exe
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-win-x64-exe
+          path: electronApp/out/make/*
