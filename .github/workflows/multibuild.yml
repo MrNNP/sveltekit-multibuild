@@ -45,10 +45,10 @@ jobs:
       - run: cp -r build/electron/* electronApp/src
       - run: cd electronApp && npm run make
       - run: ls -rlah electronApp/out/make
-      - name: Archive production artifacts dmg
+      - name: Archive production artifacts zip
         uses: actions/upload-artifact@v3
         with:
-          name: electron-mac-x64-dmg
+          name: electron-mac-x64-zip
           path: electronApp/out/make/*
   build-electron-win:
     runs-on: windows-latest
@@ -60,7 +60,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm create electron-app@latest electronApp -y
-      - run: robocopy build/electron electronApp/src /COPYALL /E
+      - run: Copy-Item -Path "./build/electron" -Destination "./electronApp/src" -Recurse  
       - run: cd electronApp && npm run make
       - name: Archive production artifacts exe
         uses: actions/upload-artifact@v3
