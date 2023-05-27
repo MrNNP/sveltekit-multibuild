@@ -60,7 +60,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm create electron-app@latest electronApp -y
-      - run: xcopy /e /v build/electron electronApp/src
+      - run: robocopy build/electron electronApp/src /COPYALL /E
       - run: cd electronApp && npm run make
       - name: Archive production artifacts exe
         uses: actions/upload-artifact@v3
