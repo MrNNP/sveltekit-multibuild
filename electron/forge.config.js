@@ -20,7 +20,11 @@ module.exports = {
 		},
 		{
 			name: '@electron-forge/maker-flatpak',
-			config: {}
+			config: {
+				options: {
+					categories: ['Utility']
+				}
+			}
 		}
 	]
 };
