@@ -14,8 +14,8 @@ const config = {
 		adapter: adapter({
 			// default options are shown. On some platforms
 			// these options are set automatically — see below
-			pages: 'build/electron',
-			assets: 'build/electron',
+			pages: 'electron/src',
+			assets: 'electron/src',
 			fallback: null,
 			precompress: true,
 			strict: true,
