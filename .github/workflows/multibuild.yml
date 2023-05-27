@@ -16,9 +16,9 @@ jobs:
           node-version: '18.x'
       - run: npm install
       - run: npm run build
+      - run: sudo apt-get install flatpak flatpak-builder elfutils
       - run: cd electron && npm install && npm run make
       - run: ls -Rlah electronApp/out/make
-      - run: sudo apt-get install flatpak flatpak-builder elfutils
       - name: Archive production artifacts deb
         uses: actions/upload-artifact@v3
         with:
