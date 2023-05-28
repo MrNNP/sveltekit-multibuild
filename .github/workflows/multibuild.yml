@@ -22,7 +22,6 @@ jobs:
       - run: sudo flatpak install flathub org.freedesktop.Platform/x86_64/19.08 org.freedesktop.Sdk/x86_64/19.08 org.electronjs.Electron2.BaseApp/x86_64/stable -y
       - run: git config --global --add protocol.file.allow always
       - run: cd electron && npm install && npm run make
-      - run: ls -Rlah electron
       - name: Archive production artifacts deb
         uses: actions/upload-artifact@v3
         with:
@@ -87,9 +86,8 @@ jobs:
         with:
           project-path: ionic/android
           output-path: sveltekit-multibuild.apk
-      - run: ls -lah
       - name: Archive production artifacts apk
         uses: actions/upload-artifact@v3
         with:
-          name: ionic-linux-mobile-apk
+          name: ionic-android-arm-apk
           path: sveltekit-multibuild.apk
