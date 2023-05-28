@@ -12,6 +12,8 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@macfja/svelte-multi-adapter": "^1.0.2",
+		"@ptkdev/sveltekit-cordova-adapter": "^0.3.1",
 		"@ptkdev/sveltekit-electron-adapter": "^0.3.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",

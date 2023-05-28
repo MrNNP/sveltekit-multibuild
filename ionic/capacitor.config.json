@@ -1,0 +1,11 @@
+{
+  "appId": "com.mrnnp.sveltekitmultibuild",
+  "appName": "sveltekit-multibuild",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

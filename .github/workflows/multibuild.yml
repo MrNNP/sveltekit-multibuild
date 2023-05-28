@@ -36,7 +36,7 @@ jobs:
       - name: Archive production artifacts flatpak
         uses: actions/upload-artifact@v3
         with:
-          name: electron-linux-x64-flatpak
+          name: electron-linux-x86_64-flatpak
           path: electron/out/make/flatpak/x86_64
   build-electron-mac:
     runs-on: macos-latest
@@ -68,3 +68,24 @@ jobs:
         with:
           name: electron-win-x64-exe
           path: electron/out/make/*
+  build-ionic-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+      - run: npm run build
+      - run: cd ionic && npm install
+      - run: cd ionic && npx cap sync
+      - uses: sparkfabrik/android-build-action@v1.3.4
+        with:
+          project-path: ionic/android
+          output-path: sveltekit-multibuild.apk
+      - run: ls -lah
+      - name: Archive production artifacts apk
+        uses: actions/upload-artifact@v3
+        with:
+          name: ionic-linux-mobile-apk
+          path: sveltekit-multibuild.apk
