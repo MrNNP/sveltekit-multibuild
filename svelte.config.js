@@ -1,6 +1,7 @@
 import electronAdapter from '@ptkdev/sveltekit-electron-adapter';
 import multiAdapter from '@macfja/svelte-multi-adapter';
 import ionicAdapter from '@ptkdev/sveltekit-cordova-adapter';
+import extentionAdapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -33,8 +34,16 @@ const config = {
 				strict: true,
 				policy: "default-src 'self'; script-src 'self'",
 				platform: 'capacitor'
+			}),
+			extentionAdapter({
+				pages: 'browser-extention/build',
+				assets: 'browser-extention/build',
+				fallback: null,
+				precompress: false,
+				strict: true
 			})
-		])
+		]),
+		appDir: 'svelteApp'
 	}
 };
 

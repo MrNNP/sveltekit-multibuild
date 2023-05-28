@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "sveltekit-multibuild",
+    "version": "1.0",
+    "description": "Create android, ios, web sites, desktop apps, and chrome extentions automatically",
+
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline'",
+        "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' 'unsafe-eval'; child-src 'self';"
+    },
+    "options_page": "build/index.html",
+    "host_permissions": [
+        "https://*/*"
+    ],
+    "icons": {
+        "32": "favicon-32x32.png"
+
+    },
+    "permissions": [
+        "cookies"
+    ],
+    "background": {
+        "service_worker": "sw2.js"
+    },
+    "action": {
+        "default_icon": {
+            "32": "favicon-32x32.png"
+        }
+    }
+}

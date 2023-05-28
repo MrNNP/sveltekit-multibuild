@@ -91,3 +91,27 @@ jobs:
         with:
           name: ionic-android-arm-apk
           path: sveltekit-multibuild.apk
+  build-extention-crx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Decrypt large secret
+        run: ./.github/decrypt_secret.sh
+        env:
+          GPG_DECRYPTION_KEY: ${{ secrets.GPG_DECRYPTION_KEY }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - uses: browser-actions/setup-chrome@v1
+      - run: npm install
+      - run: npm run build
+      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: npm install
+      - run: ${{ steps.setup-chrome.outputs.chrome-path }} --pack-extension=browser-extention --pack-extension-key=browser-extention.pem
+
+      - name: Archive production artifacts crx
+        uses: actions/upload-artifact@v3
+        with:
+          name: extension-chrome-crx
+          path: browser-extension.crx
