@@ -15,6 +15,9 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
+      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: npm install
       - run: npm run build
       - run: sudo apt-get install flatpak flatpak-builder elfutils
       - run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -45,6 +48,9 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
+      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: npm install
       - run: npm run build
       - run: cd electron && npm install && npm run make
       - name: Archive production artifacts zip
@@ -59,6 +65,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+      - run: npm install
+      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm install
       - run: npm run build
       - run: cd electron && npm install && npm run make
@@ -95,6 +104,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: sudo apt-get install gnupg2
       - name: Decrypt large secret
         run: ./.github/decrypt_secret.sh
         env:
