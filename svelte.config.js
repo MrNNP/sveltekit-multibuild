@@ -29,7 +29,7 @@ const config = {
 				pages: 'ionic/dist',
 				assets: 'ionic/dist',
 				fallback: null,
-				precompress: true,
+				precompress: false,
 				strict: true,
 				policy: "default-src 'self'; script-src 'self'",
 				platform: 'capacitor'
