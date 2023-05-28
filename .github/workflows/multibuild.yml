@@ -75,6 +75,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
       - run: npm install
       - run: npm run build
       - run: cd ionic && npm install
