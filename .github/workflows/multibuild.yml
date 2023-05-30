@@ -130,7 +130,7 @@ jobs:
           export-method: 'ad-hoc'
           configuration: Debug
           team-id: ${{ secrets.TEAM_ID }}
-          code-signing-identity: 'iOS Distribution'
+          code-signing-identity: 'Example'
           p12-path: ios_distribution.p12
           mobileprovision-path: SvelteKit_Multibuild_Provision.mobileprovisi
           certificate-password: ${{ secrets.GPG_DECRYPTION_KEY }}
