@@ -6,8 +6,11 @@ on:
   push:
     branches:
       - master
+env:
+  isValid: ${{contains(github.event.head_commit.message , '[ci]')}}
 jobs:
   build-electron-linux:
+    if: ${{env.isValid == true}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -41,6 +44,7 @@ jobs:
           name: electron-linux-x86_64-flatpak
           path: electron/out/make/flatpak/x86_64
   build-electron-mac:
+    if: ${{env.isValid == true}}
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -59,6 +63,7 @@ jobs:
           name: electron-mac-x64-zip
           path: electron/out/make/*
   build-electron-win:
+    if: ${{env.isValid == true}}
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -79,6 +84,7 @@ jobs:
           name: electron-win-x64-exe
           path: electron/out/make/*
   build-ionic-apk:
+    if: ${{env.isValid == true}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -105,6 +111,7 @@ jobs:
           name: ionic-android-arm-apk
           path: sveltekit-multibuild.apk
   build-extention-crx:
+    if: ${{env.isValid == true}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
