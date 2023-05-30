@@ -68,8 +68,8 @@ jobs:
       - run: npm install
       # - run: rm -rf node_modules/@ptkdev/sveltekit-cordova-adapter
       # - run: rm -rf node_modules/@ptkdev/sveltekit-electron-adapter
-      - run: cp -r -f ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
-      - run: cp -r -f electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: cp -r -Force ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r -Force electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm install
       - run: npm run build
       - run: cd electron && npm install && npm run make
@@ -125,6 +125,7 @@ jobs:
       - run: which chrome
       - run: ls -lah
       - run: chrome --headless --pack-extension=./browser-extention --pack-extension-key=./browser-extention.pem
+      - run: ls -lah
       - name: Archive production artifacts crx
         uses: actions/upload-artifact@v3
         with:
