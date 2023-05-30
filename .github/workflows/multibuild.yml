@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
-      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
-      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: cp -r ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm install
       - run: npm run build
       - run: sudo apt-get install flatpak flatpak-builder elfutils
@@ -48,8 +48,8 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
-      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
-      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: cp -r ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm install
       - run: npm run build
       - run: cd electron && npm install && npm run make
@@ -66,8 +66,8 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
-      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
-      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: cp -r ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm install
       - run: npm run build
       - run: cd electron && npm install && npm run make
@@ -88,6 +88,8 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
       - run: npm install
+      - run: cp -r ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm run build
       - run: cd ionic && npm install
       - run: cd ionic && npx cap sync
@@ -114,8 +116,8 @@ jobs:
           node-version: '18.x'
       - uses: browser-actions/setup-chrome@v1
       - run: npm install
-      - run: cp ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
-      - run: cp electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: cp -r ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm run build
       - run: npm install
       - run: ${{ steps.setup-chrome.outputs.chrome-path }} --pack-extension=browser-extention --pack-extension-key=browser-extention.pem
