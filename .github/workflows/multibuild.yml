@@ -104,6 +104,37 @@ jobs:
         with:
           name: ionic-android-arm-apk
           path: sveltekit-multibuild.apk
+  build-ionic-ipa:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+      - run: cp -r ionic-adapter/* node_modules/@ptkdev/sveltekit-cordova-adapter
+      - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
+      - run: npm run build
+      - run: cd ionic && npm install
+      - run: cd ionic && npx cap sync
+      - uses: yukiarrr/ios-build-action@v1.11.0
+        with:
+          project-path: ionic/ios/App/App.xcodeproj
+          workspace-path: ionic/ios/App/App.xcworkspace
+          output-path: sveltekit-multibuild.ipa
+          export-method: 'ad-hoc'
+          configuration: Debug
+          team-id: ${{ secrets.TEAM_ID }}
+          code-signing-identity: 'iOS Distribution'
+          p12-path: ios_distribution.p12
+          mobileprovision-path: SvelteKit_Multibuild_Provision.mobileprovisi
+      - run: ls -lah
+      - name: Archive production artifacts ipa
+        uses: actions/upload-artifact@v3
+        with:
+          name: ionic-iOS-arm-ipa
+          path: sveltekit-multibuild.ipa
+
   build-extention-crx:
     runs-on: ubuntu-latest
     steps:
