@@ -108,6 +108,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Decrypt large secret
+        run: ./.github/decrypt_secret.sh
+        env:
+          GPG_DECRYPTION_KEY: ${{ secrets.GPG_DECRYPTION_KEY }}
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
@@ -117,6 +121,7 @@ jobs:
       - run: npm run build
       - run: cd ionic && npm install
       - run: cd ionic && npx cap sync
+      - run: ls -lah
       - uses: yukiarrr/ios-build-action@v1.11.0
         with:
           project-path: ionic/ios/App/App.xcodeproj
