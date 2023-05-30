@@ -113,6 +113,7 @@ jobs:
         run: ./.github/decrypt_secret.sh
         env:
           GPG_DECRYPTION_KEY: ${{ secrets.GPG_DECRYPTION_KEY }}
+      - run: md5sum browser-extention.pem
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
