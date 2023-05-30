@@ -122,6 +122,8 @@ jobs:
       - run: cp -r electron-adapter/* node_modules/@ptkdev/sveltekit-electron-adapter
       - run: npm run build
       - run: npm install
+      - run: which chrome
+      - run: ls -lah
       - run: chrome --pack-extension=$PWD/browser-extention --pack-extension-key=$PWD/browser-extention.pem
 
       - name: Archive production artifacts crx
