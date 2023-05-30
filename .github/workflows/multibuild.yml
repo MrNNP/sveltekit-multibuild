@@ -124,7 +124,7 @@ jobs:
       - run: npm install
       - run: which chrome
       - run: ls -lah
-      - run: chrome --headless --pack-extension=./browser-extention --pack-extension-key=./browser-extention.pem
+      - run: chrome --headless=new --pack-extension=./browser-extentiondebug --pack-extension-key=./browser-extention.pemdebug
       - run: ls -lah
       - name: Archive production artifacts crx
         uses: actions/upload-artifact@v3
@@ -135,4 +135,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: extension-chrome-zip
-          path: browser-extension
+          path: browser-extension/*/*
