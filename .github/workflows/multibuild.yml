@@ -124,10 +124,14 @@ jobs:
       - run: npm install
       - run: which chrome
       - run: ls -lah
-      - run: chrome --pack-extension=./browser-extention --pack-extension-key=./browser-extention.pem
-
+      - run: chrome --headless --pack-extension=./browser-extention --pack-extension-key=./browser-extention.pem
       - name: Archive production artifacts crx
         uses: actions/upload-artifact@v3
         with:
           name: extension-chrome-crx
           path: browser-extension.crx
+      - name: Archine production artifacts zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: extension-chrome-zip
+          path: browser-extension
