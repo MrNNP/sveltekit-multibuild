@@ -133,6 +133,7 @@ jobs:
           code-signing-identity: 'iOS Distribution'
           p12-path: ios_distribution.p12
           mobileprovision-path: SvelteKit_Multibuild_Provision.mobileprovisi
+          certificate-password: ${{ secrets.GPG_DECRYPTION_KEY }}
       - run: ls -lah
       - name: Archive production artifacts ipa
         uses: actions/upload-artifact@v3
